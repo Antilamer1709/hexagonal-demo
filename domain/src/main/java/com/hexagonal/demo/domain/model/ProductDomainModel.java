@@ -7,4 +7,5 @@ public class ProductDomainModel {
 
     private Integer id;
     private String name;
+    private byte[] picture;
 }

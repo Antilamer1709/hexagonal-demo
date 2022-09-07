@@ -1,0 +1,1 @@
+INSERT INTO product (id, name) VALUES (1, 'New');

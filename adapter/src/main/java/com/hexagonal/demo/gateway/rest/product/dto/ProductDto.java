@@ -9,6 +9,5 @@ public class ProductDto {
     private String name;
     private Integer originalPrice;
     private DiscountDto discount;
-    private Integer availableAmount;
     private byte[] mainPicture;
 }

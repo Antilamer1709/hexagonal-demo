@@ -30,7 +30,7 @@ public class ProductController {
         return PRODUCT_REST_MAPPER.toDtoList(productServicePort.getAllProducts());
     }
 
-    @Operation(summary = "Find a product by id")
+    @Operation(summary = "Find the product details by id")
     @GetMapping("{id}")
     public ProductDetailsDto getProductById(@Parameter(description = "Id of the product") @PathVariable Integer id) {
         return PRODUCT_REST_MAPPER.toProductDetailsDto(productServicePort.getProductById(id));

@@ -15,11 +15,11 @@ public interface ProductRestMapper {
 
     ProductRestMapper PRODUCT_REST_MAPPER = getMapper(ProductRestMapper.class);
 
+    @Mapping(target = "availableAmount", source = "availableInWarehouse")
     @Mapping(target = "discount.priceAfterDiscount", source = "discount.priceAfterDiscount")
     @Mapping(target = "discount.discountInPercent", source = "discount.discountInPercent")
     ProductDetailsDto toProductDetailsDto(ProductDomainModel productDomainModel);
 
-    @Mapping(target = "availableAmount", source = "availableInWarehouse")
     @Mapping(target = "discount.priceAfterDiscount", source = "discount.priceAfterDiscount")
     @Mapping(target = "discount.discountInPercent", source = "discount.discountInPercent")
     ProductDto toDto(ProductDomainModel productDomainModel);

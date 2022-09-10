@@ -12,5 +12,6 @@ public class ProductDetailsDto {
     private String description;
     private Integer originalPrice;
     private DiscountDto discount;
+    private Integer availableAmount;
     private List<byte[]> pictureGallery;
 }

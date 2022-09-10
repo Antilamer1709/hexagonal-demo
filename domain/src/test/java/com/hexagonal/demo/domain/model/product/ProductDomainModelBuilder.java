@@ -25,6 +25,12 @@ public class ProductDomainModelBuilder {
         return this;
     }
 
+    public ProductDomainModelBuilder withDiscount(DiscountDomainModel discountDomainModel) {
+        product.applyDiscount(discountDomainModel);
+
+        return this;
+    }
+
     public ProductDomainModel build() {
         return product;
     }

@@ -29,12 +29,6 @@ public class ProductDtoBuilder {
         return this;
     }
 
-    public ProductDtoBuilder withDiscount(DiscountDto discountDto) {
-        product.setDiscount(discountDto);
-
-        return this;
-    }
-
     public ProductDto build() {
         return product;
     }

@@ -1,7 +1,10 @@
 package com.hexagonal.demo.adapter.rest.product;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hexagonal.demo.adapter.rest.product.dto.DiscountDtoBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDtoBuilder;
 import com.hexagonal.demo.adapter.rest.product.dto.ProductDtoBuilder;
+import com.hexagonal.demo.domain.model.product.DiscountDomainModelBuilder;
 import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
 import com.hexagonal.demo.domain.port.api.product.ProductServicePort;
 import org.junit.jupiter.api.Test;
@@ -44,6 +47,27 @@ class ProductControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(
                         new ProductDtoBuilder().defaultProduct().buildMany(3)
+                )));
+    }
+
+    @Test
+    void shouldFindProductDetailsById() throws Exception {
+        var productId = 1;
+
+        when(productServicePort.getProductById(productId)).thenReturn(
+                new ProductDomainModelBuilder()
+                        .defaultProduct()
+                        .withDiscount(new DiscountDomainModelBuilder().defaultDiscount().build())
+                        .build()
+        );
+
+        mockMvc.perform(get(UNDER_TEST + "/" + productId))
+                .andExpect(status().isOk())
+                .andExpect(content().json(objectMapper.writeValueAsString(
+                        new ProductDetailsDtoBuilder()
+                                .defaultProduct()
+                                .withDiscount(new DiscountDtoBuilder().defaultDiscount().build())
+                                .build()
                 )));
     }
 }

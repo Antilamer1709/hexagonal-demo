@@ -32,14 +32,14 @@ public class ProductApplicationService implements ProductServicePort {
 
         return productJpaPort.getAllProductByIds(availableProductsMap.values().stream().map(ProductDomainModel::getId).toList())
                 .stream()
-                .peek(jpaProduct -> {
+                .map(jpaProduct -> {
                     var mainPicture = productS3Port.getMainPicture(jpaProduct);
+                    var availableInWarehouse = availableProductsMap.get(jpaProduct.getId()).getAvailableInWarehouse();
                     var discount = discountSdkPort.getDiscount(jpaProduct);
 
-                    // TODO think about moving it to the mapper
                     jpaProduct.applyDiscount(discount);
-                    jpaProduct.setMainPicture(mainPicture);
-                    jpaProduct.setAvailableInWarehouse(availableProductsMap.get(jpaProduct.getId()).getAvailableInWarehouse());
+
+                    return PRODUCT_APPLICATION_SERVICE_MAPPER.toDomainModel(jpaProduct, mainPicture, availableInWarehouse);
                 })
                 .toList();
     }

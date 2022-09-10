@@ -8,7 +8,7 @@ public class DiscountDomainModelBuilder {
         discount = new DiscountDomainModel();
     }
 
-    public DiscountDomainModelBuilder defaultProduct() {
+    public DiscountDomainModelBuilder defaultDiscount() {
         discount.setProductId(1);
         discount.setPriceAfterDiscount(75);
         discount.setDiscountInPercent(25);

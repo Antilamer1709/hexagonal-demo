@@ -13,8 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -38,10 +36,14 @@ class ProductControllerIntegrationTest {
 
     @Test
     void shouldFindAllProducts() throws Exception {
-        when(productServicePort.getAllProducts()).thenReturn(List.of(new ProductDomainModelBuilder().defaultProduct().build()));
+        when(productServicePort.getAllProducts()).thenReturn(
+                new ProductDomainModelBuilder().defaultProduct().buildMany(3)
+        );
 
         mockMvc.perform(get(UNDER_TEST))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(List.of(new ProductDtoBuilder().defaultProduct().build()))));
+                .andExpect(content().json(objectMapper.writeValueAsString(
+                        new ProductDtoBuilder().defaultProduct().buildMany(3)
+                )));
     }
 }

@@ -1,7 +1,7 @@
-package com.hexagonal.demo.gateway.rest.product.mapper;
+package com.hexagonal.demo.adapter.rest.product.mapper;
 
-import com.hexagonal.demo.gateway.rest.product.dto.ProductDetailsDto;
-import com.hexagonal.demo.gateway.rest.product.dto.ProductDto;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDto;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDto;
 import com.hexagonal.demo.domain.model.product.ProductDomainModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

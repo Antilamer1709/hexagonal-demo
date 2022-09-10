@@ -1,7 +1,7 @@
-package com.hexagonal.demo.gateway.rest.product;
+package com.hexagonal.demo.adapter.rest.product;
 
-import com.hexagonal.demo.gateway.rest.product.dto.ProductDetailsDto;
-import com.hexagonal.demo.gateway.rest.product.dto.ProductDto;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDto;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDto;
 import com.hexagonal.demo.domain.port.api.product.ProductServicePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.hexagonal.demo.gateway.rest.product.mapper.ProductRestMapper.PRODUCT_REST_MAPPER;
+import static com.hexagonal.demo.adapter.rest.product.mapper.ProductRestMapper.PRODUCT_REST_MAPPER;
 
 @Tag(name = "product", description = "Product operations")
 @RestController

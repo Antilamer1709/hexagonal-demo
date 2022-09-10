@@ -1,9 +1,9 @@
-package com.hexagonal.demo.gateway.rest.order.mapper;
+package com.hexagonal.demo.adapter.rest.order.mapper;
 
 import com.hexagonal.demo.domain.model.order.OrderDomainModel;
 import com.hexagonal.demo.domain.model.product.ProductDomainModel;
-import com.hexagonal.demo.gateway.rest.order.dto.CreateOrderDto;
-import com.hexagonal.demo.gateway.rest.order.dto.OrderDto;
+import com.hexagonal.demo.adapter.rest.order.dto.CreateOrderDto;
+import com.hexagonal.demo.adapter.rest.order.dto.OrderDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

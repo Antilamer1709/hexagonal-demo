@@ -1,4 +1,4 @@
-package com.hexagonal.demo.gateway.rest.product.dto;
+package com.hexagonal.demo.adapter.rest.product.dto;
 
 import lombok.Data;
 

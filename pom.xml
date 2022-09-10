@@ -29,6 +29,7 @@
         <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
         <h2.version>2.1.214</h2.version>
         <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
+        <archunit.version>1.0.0-rc1</archunit.version>
     </properties>
 
     <dependencyManagement>
@@ -70,6 +71,21 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>${springdoc.openapi.version}</version>
+            </dependency>
+
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>com.tngtech.archunit</groupId>
+                <artifactId>archunit-junit5-api</artifactId>
+                <version>${archunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tngtech.archunit</groupId>
+                <artifactId>archunit-junit5-engine</artifactId>
+                <version>${archunit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

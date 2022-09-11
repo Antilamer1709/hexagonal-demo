@@ -1,5 +1,6 @@
 package com.hexagonal.demo.application.service.product;
 
+import com.hexagonal.demo.domain.model.product.DiscountDomainModelBuilder;
 import com.hexagonal.demo.domain.model.product.ProductDomainModel;
 import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
 import com.hexagonal.demo.domain.port.spi.product.DiscountSdkPort;
@@ -64,5 +65,35 @@ public class ProductApplicationServiceTest {
         inOrder.verify(productJpaPort).getAllProductByIds(availableIds);
         inOrder.verify(productS3Port).getMainPicture(any());
         inOrder.verify(discountSdkPort).getDiscount(any());
+    }
+
+    @Test
+    void shouldGetProductById() {
+        var jpaProduct = new ProductDomainModelBuilder().jpaProduct().build();
+        var s3Product = new ProductDomainModelBuilder().s3Product().build();
+        var warehouseProduct = new ProductDomainModelBuilder().warehouseProduct().build();
+        var discount = new DiscountDomainModelBuilder().defaultDiscount().build();
+
+        when(productJpaPort.getProductById(jpaProduct.getId())).thenReturn(jpaProduct);
+        when(productS3Port.getPictures(jpaProduct)).thenReturn(s3Product);
+        when(warehouseSdkPort.getAvailableAmount(jpaProduct)).thenReturn(warehouseProduct);
+        when(discountSdkPort.getDiscount(jpaProduct)).thenReturn(discount);
+
+        val actual = underTest.getProductById(jpaProduct.getId());
+
+        assertThat(actual)
+                .usingRecursiveComparison()
+                .isEqualTo(
+                        new ProductDomainModelBuilder()
+                                .defaultProduct()
+                                .withDiscount(new DiscountDomainModelBuilder().defaultDiscount().build())
+                                .build()
+                );
+
+        InOrder inOrder = inOrder(productJpaPort, productS3Port, discountSdkPort, warehouseSdkPort);
+        inOrder.verify(productJpaPort).getProductById(jpaProduct.getId());
+        inOrder.verify(productS3Port).getPictures(jpaProduct);
+        inOrder.verify(discountSdkPort).getDiscount(jpaProduct);
+        inOrder.verify(warehouseSdkPort).getAvailableAmount(jpaProduct);
     }
 }

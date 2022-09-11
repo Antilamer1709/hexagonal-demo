@@ -28,7 +28,9 @@ class ProductRestMapperTest {
                 .usingRecursiveComparison()
                 .isEqualTo(
                         new ProductDetailsDtoBuilder()
-                                .defaultProduct().withDiscount(new DiscountDtoBuilder().defaultDiscount().build()).build()
+                                .defaultProduct()
+                                .withDiscount(new DiscountDtoBuilder().defaultDiscount().build())
+                                .build()
                 );
     }
 

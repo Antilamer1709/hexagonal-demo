@@ -25,17 +25,9 @@ public class ProductDomainModelBuilder {
     }
 
     public ProductDomainModelBuilder defaultProduct() {
-        // TODO use jpaProduct/warehouseProduct/s3Product
-        product.setId(TEST_ID);
-        product.setName(TEST_PRODUCT_NAME);
-        product.setOriginalPrice(TEST_ORIGINAL_PRICE);
-        product.setAvailableInWarehouse(TEST_AVAILABLE_IN_WAREHOUSE);
-        product.setDescription(TEST_PRODUCT_DESCRIPTION);
-        product.setMainPicture(MAIN_PICTURE.getBytes());
-        product.setPictureGallery(List.of(
-                FIRST_GALLERY_PICTURE.getBytes(),
-                SECOND_GALLERY_PICTURE.getBytes()
-        ));
+        jpaProduct();
+        warehouseProduct();
+        s3Product();
 
         return this;
     }

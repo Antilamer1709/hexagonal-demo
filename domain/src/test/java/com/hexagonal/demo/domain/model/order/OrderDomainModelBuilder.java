@@ -40,6 +40,12 @@ public class OrderDomainModelBuilder {
         return this;
     }
 
+    public OrderDomainModelBuilder withOrderId(Integer orderId) {
+        order.setOrderId(orderId);
+
+        return this;
+    }
+
     public OrderDomainModel build() {
         return order;
     }

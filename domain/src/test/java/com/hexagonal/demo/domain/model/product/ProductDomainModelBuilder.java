@@ -21,7 +21,7 @@ public class ProductDomainModelBuilder {
         product.setId(1);
         product.setName("Test product name");
         product.setOriginalPrice(100);
-        product.setAvailableInWarehouse(5);
+        product.setAvailableInWarehouse(6);
         product.setDescription("Test product description");
         product.setMainPicture(MAIN_PICTURE.getBytes());
         product.setPictureGallery(List.of(

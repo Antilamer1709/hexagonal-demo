@@ -7,19 +7,19 @@ import com.hexagonal.demo.domain.model.product.ProductDomainModel;
  */
 public interface ProductS3Port {
 
-     /**
-      * Downloads pictures for the provided product
-      *
-      * @param productDomainModel product what pictures we are looking for
-      * @return ProductDomainModel populated only with pictures
-      */
-     ProductDomainModel getPictures(ProductDomainModel productDomainModel);
+    /**
+     * Downloads pictures for the provided product
+     *
+     * @param productDomainModel product what pictures we are looking for
+     * @return ProductDomainModel populated only with pictures
+     */
+    ProductDomainModel getPictures(ProductDomainModel productDomainModel);
 
-     /**
-      * Downloads a main picture for the given product
-      *
-      * @param productDomainModel product what pictures we are looking for
-      * @return main picture
-      */
-     byte[] getMainPicture(ProductDomainModel productDomainModel);
+    /**
+     * Downloads a main picture for the given product
+     *
+     * @param productDomainModel product what pictures we are looking for
+     * @return main picture
+     */
+    byte[] getMainPicture(ProductDomainModel productDomainModel);
 }

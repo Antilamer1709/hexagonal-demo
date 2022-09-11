@@ -2,12 +2,6 @@ package com.hexagonal.demo.adapter.rest.product.dto;
 
 import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder.MAIN_PICTURE;
-import static java.util.stream.IntStream.range;
-
 public class ProductDetailsDtoBuilder {
 
     private final ProductDetailsDto product;

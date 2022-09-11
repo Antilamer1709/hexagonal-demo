@@ -28,7 +28,7 @@ public interface ProductServicePort {
      * Update warehouse availability
      * Deletes given number from available products
      *
-     * @param amount how many products are no longer available
+     * @param amount  how many products are no longer available
      * @param product that has to be updated in the warehouse
      */
     void removeFromWarehouse(Integer amount, ProductDomainModel product);

@@ -3,10 +3,10 @@ package com.hexagonal.demo.adapter.s3;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import static java.util.stream.IntStream.range;
 
 /**
  * This is a dummy config that has to simulate a real S3 configuration with a real client.
@@ -14,6 +14,8 @@ import java.util.Random;
  */
 @Configuration
 public class S3Config {
+
+    private static final String TEST_FILE = "test file";
 
     @Bean
     public S3Client getS3Client() {
@@ -23,15 +25,15 @@ public class S3Config {
     public static class S3Client {
 
         public byte[] getObject(String key) {
-            return ("test file" + key + LocalTime.now().getSecond()).getBytes();
+            return (TEST_FILE + key).getBytes();
         }
 
         public List<byte[]> getObjects(String key) {
             List<byte[]> files = new ArrayList<>();
 
-            for (int i = 0; i < new Random().nextInt(5); i++) {
-                files.add(("test file" + key + i).getBytes());
-            }
+            range(0, 3).forEach(index -> {
+                files.add((TEST_FILE + key + index).getBytes());
+            });
 
             return files;
         }

@@ -17,8 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductApplicationServiceTest {
@@ -95,5 +94,17 @@ public class ProductApplicationServiceTest {
         inOrder.verify(productS3Port).getPictures(jpaProduct);
         inOrder.verify(discountSdkPort).getDiscount(jpaProduct);
         inOrder.verify(warehouseSdkPort).getAvailableAmount(jpaProduct);
+    }
+
+    @Test
+    void shouldRemoveFromWarehouse() {
+        Integer amount = 1;
+        var product = new ProductDomainModelBuilder().warehouseProduct().build();
+        doNothing().when(warehouseSdkPort).remove(amount, product);
+
+        underTest.removeFromWarehouse(amount, product);
+
+        InOrder inOrder = inOrder(warehouseSdkPort);
+        inOrder.verify(warehouseSdkPort).remove(amount, product);
     }
 }

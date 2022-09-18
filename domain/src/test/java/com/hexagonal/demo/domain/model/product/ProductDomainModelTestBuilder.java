@@ -6,7 +6,7 @@ import java.util.List;
 import static java.util.Objects.nonNull;
 import static java.util.stream.IntStream.range;
 
-public class ProductDomainModelBuilder {
+public class ProductDomainModelTestBuilder {
 
     public static final String MAIN_PICTURE = "Main picture";
     public static final String FIRST_GALLERY_PICTURE = "First gallery picture";
@@ -20,11 +20,11 @@ public class ProductDomainModelBuilder {
 
     private final ProductDomainModel product;
 
-    public ProductDomainModelBuilder() {
+    public ProductDomainModelTestBuilder() {
         product = new ProductDomainModel();
     }
 
-    public ProductDomainModelBuilder defaultProduct() {
+    public ProductDomainModelTestBuilder defaultProduct() {
         jpaProduct();
         warehouseProduct();
         s3Product();
@@ -32,7 +32,7 @@ public class ProductDomainModelBuilder {
         return this;
     }
 
-    public ProductDomainModelBuilder jpaProduct() {
+    public ProductDomainModelTestBuilder jpaProduct() {
         product.setId(TEST_ID);
         product.setName(TEST_PRODUCT_NAME);
         product.setOriginalPrice(TEST_ORIGINAL_PRICE);
@@ -41,14 +41,14 @@ public class ProductDomainModelBuilder {
         return this;
     }
 
-    public ProductDomainModelBuilder warehouseProduct() {
+    public ProductDomainModelTestBuilder warehouseProduct() {
         product.setId(TEST_ID);
         product.setAvailableInWarehouse(TEST_AVAILABLE_IN_WAREHOUSE);
 
         return this;
     }
 
-    public ProductDomainModelBuilder s3Product() {
+    public ProductDomainModelTestBuilder s3Product() {
         product.setMainPicture(MAIN_PICTURE.getBytes());
         product.setPictureGallery(List.of(
                 FIRST_GALLERY_PICTURE.getBytes(),
@@ -58,14 +58,32 @@ public class ProductDomainModelBuilder {
         return this;
     }
 
-    public ProductDomainModelBuilder withDiscount(DiscountDomainModel discountDomainModel) {
+    public ProductDomainModelTestBuilder withDiscount(DiscountDomainModel discountDomainModel) {
         product.applyDiscount(discountDomainModel);
 
         return this;
     }
 
-    public ProductDomainModelBuilder withPictureGallery(List<byte[]> pictureGallery) {
+    public ProductDomainModelTestBuilder withId(Integer id) {
+        product.setId(id);
+
+        return this;
+    }
+
+    public ProductDomainModelTestBuilder withPictureGallery(List<byte[]> pictureGallery) {
         product.setPictureGallery(pictureGallery);
+
+        return this;
+    }
+
+    public ProductDomainModelTestBuilder withOriginalPrice(Integer originalPrice) {
+        product.setOriginalPrice(originalPrice);
+
+        return this;
+    }
+
+    public ProductDomainModelTestBuilder withAvailableInWarehouse(Integer availableInWarehouse) {
+        product.setAvailableInWarehouse(availableInWarehouse);
 
         return this;
     }
@@ -76,12 +94,14 @@ public class ProductDomainModelBuilder {
 
     public List<ProductDomainModel> buildMany(Integer amount) {
         List<ProductDomainModel> result = new ArrayList<>();
+        result.add(product); // The first element is the one that has been built
 
-        range(1, amount + 1).forEach(index -> {
+        // Next elements (come from second element) are copy of the original with index added to the fields
+        range(2, amount + 1).forEach(index -> {
             var newProduct = new ProductDomainModel();
 
             if (nonNull(product.getId()))
-                newProduct.setId(index);
+                newProduct.setId(product.getId() + index - 1);
             if (nonNull(product.getName()))
                 newProduct.setName(product.getName() + index);
             if (nonNull(product.getOriginalPrice()))

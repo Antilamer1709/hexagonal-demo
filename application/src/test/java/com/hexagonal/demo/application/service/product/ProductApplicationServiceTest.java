@@ -1,8 +1,8 @@
 package com.hexagonal.demo.application.service.product;
 
-import com.hexagonal.demo.domain.model.product.DiscountDomainModelBuilder;
+import com.hexagonal.demo.domain.model.product.DiscountDomainModelTestBuilder;
 import com.hexagonal.demo.domain.model.product.ProductDomainModel;
-import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
+import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 import com.hexagonal.demo.domain.port.spi.product.DiscountSdkPort;
 import com.hexagonal.demo.domain.port.spi.product.ProductJpaPort;
 import com.hexagonal.demo.domain.port.spi.product.ProductS3Port;
@@ -39,9 +39,9 @@ public class ProductApplicationServiceTest {
 
     @Test
     void shouldGetAllProducts() {
-        var warehouseProducts = new ProductDomainModelBuilder().warehouseProduct().buildMany(3);
-        var jpaProducts = new ProductDomainModelBuilder().jpaProduct().buildMany(3);
-        var s3Products = new ProductDomainModelBuilder().s3Product().buildMany(3);
+        var warehouseProducts = new ProductDomainModelTestBuilder().warehouseProduct().buildMany(3);
+        var jpaProducts = new ProductDomainModelTestBuilder().jpaProduct().buildMany(3);
+        var s3Products = new ProductDomainModelTestBuilder().s3Product().buildMany(3);
         var availableIds = warehouseProducts.stream().map(ProductDomainModel::getId).toList();
 
         when(warehouseSdkPort.getAvailableProducts()).thenReturn(warehouseProducts);
@@ -53,7 +53,7 @@ public class ProductApplicationServiceTest {
         val actual = underTest.getAllProducts();
 
         assertThat(actual).isEqualTo(
-                new ProductDomainModelBuilder()
+                new ProductDomainModelTestBuilder()
                         .defaultProduct()
                         .withPictureGallery(null)
                         .buildMany(3)
@@ -68,10 +68,10 @@ public class ProductApplicationServiceTest {
 
     @Test
     void shouldGetProductById() {
-        var jpaProduct = new ProductDomainModelBuilder().jpaProduct().build();
-        var s3Product = new ProductDomainModelBuilder().s3Product().build();
-        var warehouseProduct = new ProductDomainModelBuilder().warehouseProduct().build();
-        var discount = new DiscountDomainModelBuilder().defaultDiscount().build();
+        var jpaProduct = new ProductDomainModelTestBuilder().jpaProduct().build();
+        var s3Product = new ProductDomainModelTestBuilder().s3Product().build();
+        var warehouseProduct = new ProductDomainModelTestBuilder().warehouseProduct().build();
+        var discount = new DiscountDomainModelTestBuilder().defaultDiscount().build();
 
         when(productJpaPort.getProductById(jpaProduct.getId())).thenReturn(jpaProduct);
         when(productS3Port.getPictures(jpaProduct)).thenReturn(s3Product);
@@ -83,9 +83,9 @@ public class ProductApplicationServiceTest {
         assertThat(actual)
                 .usingRecursiveComparison()
                 .isEqualTo(
-                        new ProductDomainModelBuilder()
+                        new ProductDomainModelTestBuilder()
                                 .defaultProduct()
-                                .withDiscount(new DiscountDomainModelBuilder().defaultDiscount().build())
+                                .withDiscount(new DiscountDomainModelTestBuilder().defaultDiscount().build())
                                 .build()
                 );
 
@@ -99,7 +99,7 @@ public class ProductApplicationServiceTest {
     @Test
     void shouldRemoveFromWarehouse() {
         Integer amount = 1;
-        var product = new ProductDomainModelBuilder().warehouseProduct().build();
+        var product = new ProductDomainModelTestBuilder().warehouseProduct().build();
         doNothing().when(warehouseSdkPort).remove(amount, product);
 
         underTest.removeFromWarehouse(amount, product);

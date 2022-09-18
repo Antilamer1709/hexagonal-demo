@@ -1,0 +1,62 @@
+package com.hexagonal.demo.adapter.jpa.order;
+
+import com.hexagonal.demo.adapter.jpa.AbstractAdapterIntegrationTest;
+import com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+
+import java.time.LocalDateTime;
+
+import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.CREATION_DATE_FIELD;
+import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_CREATION_DATE;
+import static org.assertj.core.api.Assertions.assertThat;
+
+@ContextConfiguration(classes = {OrderJpaAdapter.class})
+public class OrderJpaAdapterIntegrationTest extends AbstractAdapterIntegrationTest {
+
+    @Autowired
+    private OrderJpaAdapter underTest;
+
+    @Test
+    void shouldGetAllOrders() {
+        var actual = underTest.getAllOrders();
+
+        assertThat(actual)
+                .usingRecursiveComparison()
+                .isEqualTo(
+                        new OrderDomainModelTestBuilder()
+                                .withOrderId(10001)
+                                .withAmount(1)
+                                .withProductId(10001)
+                                .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                                .buildMany(2)
+                );
+    }
+
+    @Test
+    void shouldCreateOrder() {
+        var now = LocalDateTime.now();
+
+        var actual = underTest.createOrder(
+                new OrderDomainModelTestBuilder()
+                        .withProductId(10001)
+                        .withAmount(1)
+                        .build()
+        );
+
+        assertThat(actual)
+                .usingRecursiveComparison()
+                .ignoringFields(CREATION_DATE_FIELD)
+                .isEqualTo(
+                        new OrderDomainModelTestBuilder()
+                                .withOrderId(1)
+                                .withAmount(1)
+                                .withProductId(10001)
+                                .build()
+                );
+        assertThat(actual.getCreationDate().toLocalDate()).isEqualTo(now.toLocalDate());
+        assertThat(actual.getCreationDate().getHour()).isEqualTo(now.getHour());
+        assertThat(actual.getCreationDate().getMinute()).isEqualTo(now.getMinute());
+    }
+}

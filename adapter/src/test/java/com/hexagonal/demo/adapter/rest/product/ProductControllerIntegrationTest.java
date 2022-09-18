@@ -1,11 +1,11 @@
 package com.hexagonal.demo.adapter.rest.product;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hexagonal.demo.adapter.rest.product.dto.DiscountDtoBuilder;
-import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDtoBuilder;
-import com.hexagonal.demo.adapter.rest.product.dto.ProductDtoBuilder;
-import com.hexagonal.demo.domain.model.product.DiscountDomainModelBuilder;
-import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.DiscountDtoTestBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDtoTestBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDtoTestBuilder;
+import com.hexagonal.demo.domain.model.product.DiscountDomainModelTestBuilder;
+import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 import com.hexagonal.demo.domain.port.api.product.ProductServicePort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,13 +40,13 @@ class ProductControllerIntegrationTest {
     @Test
     void shouldFindAllProducts() throws Exception {
         when(productServicePort.getAllProducts()).thenReturn(
-                new ProductDomainModelBuilder().defaultProduct().buildMany(3)
+                new ProductDomainModelTestBuilder().defaultProduct().buildMany(3)
         );
 
         mockMvc.perform(get(UNDER_TEST))
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(
-                        new ProductDtoBuilder().defaultProduct().buildMany(3)
+                        new ProductDtoTestBuilder().defaultProduct().buildMany(3)
                 )));
     }
 
@@ -55,18 +55,18 @@ class ProductControllerIntegrationTest {
         var productId = 1;
 
         when(productServicePort.getProductById(productId)).thenReturn(
-                new ProductDomainModelBuilder()
+                new ProductDomainModelTestBuilder()
                         .defaultProduct()
-                        .withDiscount(new DiscountDomainModelBuilder().defaultDiscount().build())
+                        .withDiscount(new DiscountDomainModelTestBuilder().defaultDiscount().build())
                         .build()
         );
 
         mockMvc.perform(get(UNDER_TEST + "/" + productId))
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(
-                        new ProductDetailsDtoBuilder()
+                        new ProductDetailsDtoTestBuilder()
                                 .defaultProduct()
-                                .withDiscount(new DiscountDtoBuilder().defaultDiscount().build())
+                                .withDiscount(new DiscountDtoTestBuilder().defaultDiscount().build())
                                 .build()
                 )));
     }

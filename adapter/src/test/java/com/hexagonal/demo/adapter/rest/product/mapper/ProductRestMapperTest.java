@@ -1,10 +1,10 @@
 package com.hexagonal.demo.adapter.rest.product.mapper;
 
-import com.hexagonal.demo.adapter.rest.product.dto.DiscountDtoBuilder;
-import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDtoBuilder;
-import com.hexagonal.demo.adapter.rest.product.dto.ProductDtoBuilder;
-import com.hexagonal.demo.domain.model.product.DiscountDomainModelBuilder;
-import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.DiscountDtoTestBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDetailsDtoTestBuilder;
+import com.hexagonal.demo.adapter.rest.product.dto.ProductDtoTestBuilder;
+import com.hexagonal.demo.domain.model.product.DiscountDomainModelTestBuilder;
+import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,18 +18,18 @@ class ProductRestMapperTest {
     @Test
     void shouldMapToProductDetailsDto() {
         val actual = PRODUCT_REST_MAPPER.toProductDetailsDto(
-                new ProductDomainModelBuilder()
+                new ProductDomainModelTestBuilder()
                         .defaultProduct()
-                        .withDiscount(new DiscountDomainModelBuilder().defaultDiscount().build())
+                        .withDiscount(new DiscountDomainModelTestBuilder().defaultDiscount().build())
                         .build()
         );
 
         assertThat(actual)
                 .usingRecursiveComparison()
                 .isEqualTo(
-                        new ProductDetailsDtoBuilder()
+                        new ProductDetailsDtoTestBuilder()
                                 .defaultProduct()
-                                .withDiscount(new DiscountDtoBuilder().defaultDiscount().build())
+                                .withDiscount(new DiscountDtoTestBuilder().defaultDiscount().build())
                                 .build()
                 );
     }
@@ -37,18 +37,18 @@ class ProductRestMapperTest {
     @Test
     void shouldMapToDto() {
         val actual = PRODUCT_REST_MAPPER.toDto(
-                new ProductDomainModelBuilder()
+                new ProductDomainModelTestBuilder()
                         .defaultProduct()
-                        .withDiscount(new DiscountDomainModelBuilder().defaultDiscount().build())
+                        .withDiscount(new DiscountDomainModelTestBuilder().defaultDiscount().build())
                         .build()
         );
 
         assertThat(actual)
                 .usingRecursiveComparison()
                 .isEqualTo(
-                        new ProductDtoBuilder()
+                        new ProductDtoTestBuilder()
                                 .defaultProduct()
-                                .withDiscount(new DiscountDtoBuilder().defaultDiscount().build())
+                                .withDiscount(new DiscountDtoTestBuilder().defaultDiscount().build())
                                 .build()
                 );
     }
@@ -56,7 +56,7 @@ class ProductRestMapperTest {
     @Test
     void shouldMapToDtoList() {
         val actual = PRODUCT_REST_MAPPER.toDtoList(
-                new ProductDomainModelBuilder()
+                new ProductDomainModelTestBuilder()
                         .defaultProduct()
                         .buildMany(3)
         );
@@ -64,7 +64,7 @@ class ProductRestMapperTest {
         assertThat(actual)
                 .usingRecursiveComparison()
                 .isEqualTo(
-                        new ProductDtoBuilder()
+                        new ProductDtoTestBuilder()
                                 .defaultProduct()
                                 .buildMany(3)
                 );

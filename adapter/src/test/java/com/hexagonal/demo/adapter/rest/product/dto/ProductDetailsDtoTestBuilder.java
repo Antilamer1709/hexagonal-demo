@@ -1,17 +1,17 @@
 package com.hexagonal.demo.adapter.rest.product.dto;
 
-import com.hexagonal.demo.domain.model.product.ProductDomainModelBuilder;
+import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 
-public class ProductDetailsDtoBuilder {
+public class ProductDetailsDtoTestBuilder {
 
     private final ProductDetailsDto product;
 
-    public ProductDetailsDtoBuilder() {
+    public ProductDetailsDtoTestBuilder() {
         product = new ProductDetailsDto();
     }
 
-    public ProductDetailsDtoBuilder defaultProduct() {
-        var productDomainModel = new ProductDomainModelBuilder()
+    public ProductDetailsDtoTestBuilder defaultProduct() {
+        var productDomainModel = new ProductDomainModelTestBuilder()
                 .defaultProduct()
                 .build();
 
@@ -25,7 +25,7 @@ public class ProductDetailsDtoBuilder {
         return this;
     }
 
-    public ProductDetailsDtoBuilder withDiscount(DiscountDto discountDto) {
+    public ProductDetailsDtoTestBuilder withDiscount(DiscountDto discountDto) {
         product.setDiscount(discountDto);
 
         return this;

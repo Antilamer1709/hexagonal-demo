@@ -1,17 +1,17 @@
 package com.hexagonal.demo.adapter.rest.order.dto;
 
-import com.hexagonal.demo.domain.model.order.OrderDomainModelBuilder;
+import com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder;
 
-public class CreateOrderDtoBuilder {
+public class CreateOrderDtoTestBuilder {
 
     private final CreateOrderDto createOrder;
 
-    public CreateOrderDtoBuilder() {
+    public CreateOrderDtoTestBuilder() {
         createOrder = new CreateOrderDto();
     }
 
-    public CreateOrderDtoBuilder defaultOrder() {
-        var orderDomainModel = new OrderDomainModelBuilder()
+    public CreateOrderDtoTestBuilder defaultOrder() {
+        var orderDomainModel = new OrderDomainModelTestBuilder()
                 .defaultOrder()
                 .build();
 

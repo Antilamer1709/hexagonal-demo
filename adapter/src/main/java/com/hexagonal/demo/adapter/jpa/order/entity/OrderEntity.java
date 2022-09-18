@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
@@ -22,6 +24,9 @@ public class OrderEntity {
 
     @Column(nullable = false)
     private Integer amount;
+
+    @Column(nullable = false)
+    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = PRODUCT_ID_COLUMN)

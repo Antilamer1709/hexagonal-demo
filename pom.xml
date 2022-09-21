@@ -27,7 +27,7 @@
         <java.version>17</java.version>
         <apache.commons.version>4.4</apache.commons.version>
         <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
-        <h2.version>2.1.214</h2.version>
+        <h2.version>1.4.199</h2.version>
         <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
         <archunit.version>1.0.0-rc1</archunit.version>
     </properties>

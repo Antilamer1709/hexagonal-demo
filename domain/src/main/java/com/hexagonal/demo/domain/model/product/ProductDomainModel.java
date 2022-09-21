@@ -32,4 +32,11 @@ public class ProductDomainModel {
             this.discount.setPriceAfterDiscount(this.originalPrice - (this.originalPrice * discount.getDiscountInPercent() / HUNDRED_PERCENT));
         }
     }
+
+    public void setAvailableInWarehouse(Integer availableInWarehouse) {
+        if (availableInWarehouse < 0) {
+            throw new IllegalArgumentException("The available amount cannot be less than zero!");
+        }
+        this.availableInWarehouse = availableInWarehouse;
+    }
 }

@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap/hexagonal/demo"
+           targetNamespace="http://soap/hexagonal/demo" elementFormDefault="qualified">
+
+    <xs:element name="createOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productId" type="xs:int"/>
+                <xs:element name="amount" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createOrderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="order" type="tns:order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="order">
+        <xs:sequence>
+            <xs:element name="orderId" type="xs:int"/>
+            <xs:element name="productId" type="xs:int"/>
+            <xs:element name="amount" type="xs:int"/>
+            <xs:element name="creationDate" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -12,11 +12,11 @@ public class ProductDomainModelTestBuilder {
     public static final String FIRST_GALLERY_PICTURE = "First gallery picture";
     public static final String SECOND_GALLERY_PICTURE = "Second gallery picture";
 
-    private static final int TEST_ID = 1;
-    private static final int TEST_ORIGINAL_PRICE = 100;
-    private static final int TEST_AVAILABLE_IN_WAREHOUSE = 6;
-    private static final String TEST_PRODUCT_NAME = "Test product name";
-    private static final String TEST_PRODUCT_DESCRIPTION = "Test product description";
+    public static final int TEST_ID = 1;
+    public static final int TEST_ORIGINAL_PRICE = 100;
+    public static final int TEST_AVAILABLE_IN_WAREHOUSE = 6;
+    public static final String TEST_PRODUCT_NAME = "Test product name";
+    public static final String TEST_PRODUCT_DESCRIPTION = "Test product description";
 
     private final ProductDomainModel product;
 

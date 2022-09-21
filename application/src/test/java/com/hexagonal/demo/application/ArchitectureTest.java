@@ -47,7 +47,8 @@ public class ArchitectureTest {
             .adapter("jpa", "com.hexagonal.demo.adapter.jpa..")
             .adapter("sdk", "com.hexagonal.demo.adapter.sdk..")
             .adapter("s3", "com.hexagonal.demo.adapter.s3..")
-            .adapter("rest", "com.hexagonal.demo.adapter.rest..");
+            .adapter("rest", "com.hexagonal.demo.adapter.rest..")
+            .adapter("soap", "com.hexagonal.demo.adapter.soap..");
 
     /**
      * Architecture test to check following arch conditions:

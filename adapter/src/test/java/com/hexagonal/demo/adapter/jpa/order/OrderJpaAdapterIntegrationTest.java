@@ -50,7 +50,7 @@ public class OrderJpaAdapterIntegrationTest extends AbstractAdapterIntegrationTe
                 .ignoringFields(CREATION_DATE_FIELD)
                 .isEqualTo(
                         new OrderDomainModelTestBuilder()
-                                .withOrderId(10003)
+                                .withOrderId(1)
                                 .withAmount(1)
                                 .withProductId(10001)
                                 .build()

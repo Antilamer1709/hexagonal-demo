@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="hexagonal (generated)" id="1667589694331-2" context="default">
+        <createTable tableName="product_order">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_orderPK"/>
+            </column>
+            <column name="amount" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hexagonal (generated)" id="1667589694331-3" context="default">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_order" constraintName="product_order_product_FK" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+
+    <changeSet author="hexagonal (generated)" id="1667589694331-8" context="test">
+        <comment>Insert orders for test purposes</comment>
+        <sql>
+            INSERT INTO product_order (id, amount, product_id, creation_date)
+            VALUES (10001, 1, 10001, '2022-01-01 12:00:00');
+
+            INSERT INTO product_order (id, amount, product_id, creation_date)
+            VALUES (10002, 2, 10001, '2022-01-02 12:00:00');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

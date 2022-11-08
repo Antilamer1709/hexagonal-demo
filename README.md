@@ -5,6 +5,9 @@ The project simulates an online store. For the sake of simplicity, I mocked some
 
 The main idea was to demonstrate how to organize modules and packages, and cover them with tests, so the implementations don't really matter.
 
+# Presentation
+The presentation is available by this [link](https://docs.google.com/presentation/d/1oSH4knk2zZosSuMuThOEIdnC5d_YnSYEJYVWEMGqLQ4/edit?usp=sharing)
+
 # To run locally
 1) Run a Postgres database from the container: ```docker run --name hexagonal_postgres -d -p 5434:5432 -e POSTGRES_USER=sa -e POSTGRES_PASSWORD=password -e POSTGRES_DB=hexagonal postgres```
 2) Build it with maven to generate classes. ```mvn compile``` will do the job. (in Intellij you may need to reload maven project to find generated classes from the ```soap.hexagonal.demo..``` package)

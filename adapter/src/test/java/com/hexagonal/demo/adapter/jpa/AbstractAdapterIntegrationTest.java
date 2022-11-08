@@ -27,7 +27,7 @@ public class AbstractAdapterIntegrationTest {
     private static final String DATASOURCE_PASSWORD_PROPERTY_NAME = "spring.datasource.password";
     private static final String DATASOURCE_USERNAME_PROPERTY_NAME = "spring.datasource.username";
 
-    public static final PostgreSQLContainer<?> POSTGRE_DB_CONTAINER = new PostgreSQLContainer<>(parse("his-core.docker.artifactory.cgm.ag/postgres:13.2").asCompatibleSubstituteFor("postgres"));
+    public static final PostgreSQLContainer<?> POSTGRE_DB_CONTAINER = new PostgreSQLContainer<>(parse("postgres:15.0").asCompatibleSubstituteFor("postgres"));
 
     static {
         POSTGRE_DB_CONTAINER.setCommand("postgres", "-c", "max_connections=20000");

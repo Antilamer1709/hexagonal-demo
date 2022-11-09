@@ -7,11 +7,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 import static com.hexagonal.demo.adapter.rest.product.mapper.ProductRestMapper.PRODUCT_REST_MAPPER;
@@ -19,6 +22,7 @@ import static com.hexagonal.demo.adapter.rest.product.mapper.ProductRestMapper.P
 @Tag(name = "product", description = "Product operations")
 @RestController
 @RequestMapping("products")
+@Validated
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -32,7 +36,7 @@ public class ProductController {
 
     @Operation(summary = "Find the product details by id")
     @GetMapping("{id}")
-    public ProductDetailsDto getProductDetails(@Parameter(description = "Id of the product") @PathVariable Integer id) {
+    public ProductDetailsDto getProductDetails(@Parameter(description = "Id of the product") @PathVariable @NotNull @Positive Integer id) {
         return PRODUCT_REST_MAPPER.toProductDetailsDto(productServicePort.getProductById(id));
     }
 }

@@ -1,5 +1,6 @@
 package com.hexagonal.demo.adapter.jpa.order;
 
+import com.github.database.rider.core.api.dataset.DataSet;
 import com.hexagonal.demo.adapter.jpa.AbstractAdapterIntegrationTest;
 import com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ public class OrderJpaAdapterIntegrationTest extends AbstractAdapterIntegrationTe
     private OrderJpaAdapter underTest;
 
     @Test
+    @DataSet(value = {"products.xml", "orders.xml"})
     void shouldGetAllOrders() {
         var actual = underTest.getAllOrders();
 
@@ -35,6 +37,7 @@ public class OrderJpaAdapterIntegrationTest extends AbstractAdapterIntegrationTe
     }
 
     @Test
+    @DataSet(value = {"products.xml"})
     void shouldCreateOrder() {
         var now = LocalDateTime.now();
 

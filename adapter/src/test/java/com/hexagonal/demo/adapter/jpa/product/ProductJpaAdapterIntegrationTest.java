@@ -1,5 +1,6 @@
 package com.hexagonal.demo.adapter.jpa.product;
 
+import com.github.database.rider.core.api.dataset.DataSet;
 import com.hexagonal.demo.adapter.jpa.AbstractAdapterIntegrationTest;
 import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ public class ProductJpaAdapterIntegrationTest extends AbstractAdapterIntegration
     private ProductJpaAdapter underTest;
 
     @Test
+    @DataSet(value = {"products.xml"})
     void shouldGetProductById() {
         var actual = underTest.getProductById(10001);
 
@@ -31,6 +33,7 @@ public class ProductJpaAdapterIntegrationTest extends AbstractAdapterIntegration
     }
 
     @Test
+    @DataSet(value = {"products.xml"})
     void shouldGetAllProductByIds() {
         var actual = underTest.getAllProductByIds(List.of(10001, 10002));
 

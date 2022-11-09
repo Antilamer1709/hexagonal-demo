@@ -35,6 +35,7 @@
         <javax.validation.version>2.0.1.Final</javax.validation.version>
         <javassist.version>3.29.0-GA</javassist.version>
         <testcontainers.version>1.17.3</testcontainers.version>
+        <rider.database.version>1.35.0</rider.database.version>
     </properties>
 
     <dependencyManagement>
@@ -103,6 +104,19 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${testcontainers.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.database-rider</groupId>
+                <artifactId>rider-core</artifactId>
+                <version>${rider.database.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.database-rider</groupId>
+                <artifactId>rider-spring</artifactId>
+                <version>${rider.database.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

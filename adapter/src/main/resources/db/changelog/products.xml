@@ -32,15 +32,4 @@
             VALUES (3, 'Lenovo P11', 350, 'Great tablet for surfing internet and watching videos.');
         </sql>
     </changeSet>
-
-    <changeSet author="hexagonal (generated)" id="1667589694331-7" context="test">
-        <comment>Insert products for test purposes</comment>
-        <sql>
-            INSERT INTO product (id, name, price, description)
-            VALUES (10001, 'Test product name', 100, 'Test product description');
-
-            INSERT INTO product (id, name, price, description)
-            VALUES (10002, 'Test product name2', 120, 'Test product description2');
-        </sql>
-    </changeSet>
 </databaseChangeLog>

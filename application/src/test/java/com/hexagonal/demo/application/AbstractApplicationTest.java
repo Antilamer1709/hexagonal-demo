@@ -1,25 +1,14 @@
-package com.hexagonal.demo.adapter.jpa;
+package com.hexagonal.demo.application;
 
-import com.github.database.rider.spring.api.DBRider;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 import static org.testcontainers.utility.DockerImageName.parse;
 
-@TestPropertySource(properties = {"spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml"})
-@DBRider
-@DataJpaTest
 @Testcontainers
-@AutoConfigurationPackage
-@AutoConfigureTestDatabase(replace = NONE)
-public class AbstractAdapterIntegrationTest {
+public abstract class AbstractApplicationTest {
 
     private static final String IMAGE = "postgres:15.0";
     private static final String DATASOURCE_URL_PROPERTY_NAME = "spring.datasource.url";

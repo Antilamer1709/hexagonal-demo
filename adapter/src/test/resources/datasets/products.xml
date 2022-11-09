@@ -1,0 +1,4 @@
+<dataset>
+    <product id="10001" name="Test product name" price="100" description="Test product description"/>
+    <product id="10002" name="Test product name2" price="120" description="Test product description2"/>
+</dataset>

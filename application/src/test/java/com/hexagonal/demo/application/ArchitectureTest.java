@@ -21,6 +21,8 @@ import static com.tngtech.archunit.lang.SimpleConditionEvent.violated;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.constructors;
 import static com.tngtech.archunit.library.Architectures.onionArchitecture;
+import static com.tngtech.archunit.library.GeneralCodingRules.*;
+import static com.tngtech.archunit.library.GeneralCodingRules.NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.substringAfterLast;
 
@@ -35,6 +37,24 @@ public class ArchitectureTest {
     public static final SecondaryPortArchCondition SECONDARY_PORT_ARCH_CONDITION = new SecondaryPortArchCondition();
     public static final RestDependencyArchCondition REST_DEPENDENCY_ARCH_CONDITION = new RestDependencyArchCondition();
     public static final RestConstructorArchCondition REST_CONSTRUCTOR_ARCH_CONDITION = new RestConstructorArchCondition();
+
+    /**
+     * A rule that checks that none of the given classes access Java Util Logging.
+     */
+    @ArchTest
+    public static final ArchRule JAVA_UTIL_LOGGING_IS_FORBIDDEN = NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING;
+
+    /**
+     * A rule that checks that none of the given classes uses field injection.
+     */
+    @ArchTest
+    public static final ArchRule FIELD_INJECTION_SHOULD_NOT_BE_USED = NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
+
+    /**
+     * A rule that checks that none of the given classes access the standard streams System.out and System.err.
+     */
+    @ArchTest
+    public static final ArchRule STANDARD_OUTPUT_STREAMS_SHOULD_NOT_BE_USED = NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS;
 
     /**
      * Architecture test to check if hexagonal architecture pattern is followed

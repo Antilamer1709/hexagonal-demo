@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_CREATION_DATE;
+import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_FIRST_ORDER_CREATION_DATE;
 import static java.util.Objects.nonNull;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -41,7 +41,7 @@ public class OrderApplicationServiceTest {
     void shouldGetAllOrders() {
         var orders = new OrderDomainModelTestBuilder()
                 .defaultOrder()
-                .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                 .buildMany(3);
         when(orderJpaPort.getAllOrders()).thenReturn(orders);
 
@@ -52,7 +52,7 @@ public class OrderApplicationServiceTest {
                 .isEqualTo(
                         new OrderDomainModelTestBuilder()
                                 .defaultOrder()
-                                .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                                .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                                 .buildMany(3)
                 );
 
@@ -74,7 +74,7 @@ public class OrderApplicationServiceTest {
         when(orderJpaPort.createOrder(order)).thenReturn(
                 new OrderDomainModelTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .build()
         );
         doNothing().when(productServicePort).removeFromWarehouse(order.getAmount(), product);
@@ -85,7 +85,7 @@ public class OrderApplicationServiceTest {
                 .usingRecursiveComparison()
                 .isEqualTo(
                         new OrderDomainModelTestBuilder()
-                                .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                                .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                                 .defaultOrder()
                                 .build()
                 );

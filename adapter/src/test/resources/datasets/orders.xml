@@ -1,4 +1,4 @@
 <dataset>
-    <product_order id="10001" amount="1" product_id="10001" creation_date="2022-01-01 12:00:00"/>
-    <product_order id="10002" amount="2" product_id="10001" creation_date="2022-01-02 12:00:00"/>
+    <product_order id="1" amount="1" product_id="1" creation_date="2022-01-01 12:00:00"/>
+    <product_order id="2" amount="2" product_id="1" creation_date="2022-01-02 12:00:00"/>
 </dataset>

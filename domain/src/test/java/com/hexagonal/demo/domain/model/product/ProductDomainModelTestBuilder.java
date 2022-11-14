@@ -8,14 +8,17 @@ import static java.util.stream.IntStream.range;
 
 public class ProductDomainModelTestBuilder {
 
-    public static final String MAIN_PICTURE = "Main picture";
-    public static final String FIRST_GALLERY_PICTURE = "First gallery picture";
-    public static final String SECOND_GALLERY_PICTURE = "Second gallery picture";
+    public static final String TEST_FIRST_FILE = "test first file";
+    public static final String TEST_SECOND_FILE = "test second file";
+    public static final String TEST_THIRD_FILE = "test third file";
 
-    public static final int TEST_ID = 1;
-    public static final int TEST_ORIGINAL_PRICE = 100;
-    public static final int TEST_AVAILABLE_IN_WAREHOUSE = 6;
-    public static final String TEST_PRODUCT_NAME = "Test product name";
+    public static final int TEST_FIRST_ID = 1;
+    public static final int TEST_SECOND_ID = 2;
+    public static final int TEST_FIRST_ORIGINAL_PRICE = 100;
+    public static final int TEST_SECOND_ORIGINAL_PRICE = 120;
+    public static final int TEST_AVAILABLE_IN_WAREHOUSE = 24;
+    public static final String TEST_FIRST_PRODUCT_NAME = "Test product name";
+    public static final String TEST_SECOND_PRODUCT_NAME = "Test product name2";
     public static final String TEST_PRODUCT_DESCRIPTION = "Test product description";
 
     private final ProductDomainModel product;
@@ -33,26 +36,26 @@ public class ProductDomainModelTestBuilder {
     }
 
     public ProductDomainModelTestBuilder jpaProduct() {
-        product.setId(TEST_ID);
-        product.setName(TEST_PRODUCT_NAME);
-        product.setOriginalPrice(TEST_ORIGINAL_PRICE);
+        product.setId(TEST_FIRST_ID);
+        product.setName(TEST_FIRST_PRODUCT_NAME);
+        product.setOriginalPrice(TEST_FIRST_ORIGINAL_PRICE);
         product.setDescription(TEST_PRODUCT_DESCRIPTION);
 
         return this;
     }
 
     public ProductDomainModelTestBuilder warehouseProduct() {
-        product.setId(TEST_ID);
+        product.setId(TEST_FIRST_ID);
         product.setAvailableInWarehouse(TEST_AVAILABLE_IN_WAREHOUSE);
 
         return this;
     }
 
     public ProductDomainModelTestBuilder s3Product() {
-        product.setMainPicture(MAIN_PICTURE.getBytes());
+        product.setMainPicture(TEST_FIRST_FILE.getBytes());
         product.setPictureGallery(List.of(
-                FIRST_GALLERY_PICTURE.getBytes(),
-                SECOND_GALLERY_PICTURE.getBytes()
+                TEST_SECOND_FILE.getBytes(),
+                TEST_THIRD_FILE.getBytes()
         ));
 
         return this;
@@ -111,12 +114,12 @@ public class ProductDomainModelTestBuilder {
             if (nonNull(product.getDescription()))
                 newProduct.setDescription(product.getDescription() + index);
             if (nonNull(product.getMainPicture()))
-                newProduct.setMainPicture((MAIN_PICTURE + index).getBytes());
+                newProduct.setMainPicture((TEST_FIRST_FILE + index).getBytes());
 
             if (nonNull(product.getPictureGallery())) {
                 newProduct.setPictureGallery(List.of(
-                        (FIRST_GALLERY_PICTURE + index).getBytes(),
-                        (SECOND_GALLERY_PICTURE + index).getBytes()
+                        (TEST_SECOND_FILE + index).getBytes(),
+                        (TEST_THIRD_FILE + index).getBytes()
                 ));
             }
 

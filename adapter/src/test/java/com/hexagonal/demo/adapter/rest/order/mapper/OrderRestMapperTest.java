@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 
 import static com.hexagonal.demo.adapter.rest.order.mapper.OrderRestMapper.ORDER_REST_MAPPER;
-import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_CREATION_DATE;
+import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_FIRST_ORDER_CREATION_DATE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = OrderRestMapper.class)
@@ -21,14 +21,14 @@ class OrderRestMapperTest {
         val actual = ORDER_REST_MAPPER.toDto(
                 new OrderDomainModelTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .build()
         );
 
         assertThat(actual).isEqualTo(
                 new OrderDtoTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .build()
         );
     }
@@ -38,14 +38,14 @@ class OrderRestMapperTest {
         val actual = ORDER_REST_MAPPER.toDtoList(
                 new OrderDomainModelTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .buildMany(3)
         );
 
         assertThat(actual).isEqualTo(
                 new OrderDtoTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .buildMany(3)
         );
     }

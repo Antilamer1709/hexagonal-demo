@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 
-import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_CREATION_DATE;
+import static com.hexagonal.demo.domain.model.order.OrderDomainModelTestBuilder.TEST_FIRST_ORDER_CREATION_DATE;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,7 +45,7 @@ class OrderControllerIntegrationTest {
         when(orderServicePort.getAllOrders()).thenReturn(
                 new OrderDomainModelTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .buildMany(3)
         );
 
@@ -54,7 +54,7 @@ class OrderControllerIntegrationTest {
                 .andExpect(content().json(objectMapper.writeValueAsString(
                         new OrderDtoTestBuilder()
                                 .defaultOrder()
-                                .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                                .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                                 .buildMany(3)
                 )));
     }
@@ -69,7 +69,7 @@ class OrderControllerIntegrationTest {
         ).thenReturn(
                 new OrderDomainModelTestBuilder()
                         .defaultOrder()
-                        .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                        .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                         .build()
         );
 
@@ -82,7 +82,7 @@ class OrderControllerIntegrationTest {
                 .andExpect(content().json(objectMapper.writeValueAsString(
                         new OrderDtoTestBuilder()
                                 .defaultOrder()
-                                .withCreationDate(LocalDateTime.parse(TEST_CREATION_DATE))
+                                .withCreationDate(LocalDateTime.parse(TEST_FIRST_ORDER_CREATION_DATE))
                                 .build()
                 )));
     }

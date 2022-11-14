@@ -1,7 +1,7 @@
 package com.hexagonal.demo.adapter.jpa.product;
 
 import com.github.database.rider.core.api.dataset.DataSet;
-import com.hexagonal.demo.adapter.jpa.AbstractAdapterIntegrationTest;
+import com.hexagonal.demo.adapter.jpa.AbstractJpaAdapterIntegrationTest;
 import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ContextConfiguration(classes = {ProductJpaAdapter.class})
-public class ProductJpaAdapterIntegrationTest extends AbstractAdapterIntegrationTest {
+public class ProductJpaAdapterIntegrationTest extends AbstractJpaAdapterIntegrationTest {
 
     @Autowired
     private ProductJpaAdapter underTest;
@@ -20,14 +20,14 @@ public class ProductJpaAdapterIntegrationTest extends AbstractAdapterIntegration
     @Test
     @DataSet(value = {"products.xml"})
     void shouldGetProductById() {
-        var actual = underTest.getProductById(10001);
+        var actual = underTest.getProductById(1);
 
         assertThat(actual)
                 .usingRecursiveComparison()
                 .isEqualTo(
                         new ProductDomainModelTestBuilder()
                                 .jpaProduct()
-                                .withId(10001)
+                                .withId(1)
                                 .build()
                 );
     }
@@ -35,14 +35,14 @@ public class ProductJpaAdapterIntegrationTest extends AbstractAdapterIntegration
     @Test
     @DataSet(value = {"products.xml"})
     void shouldGetAllProductByIds() {
-        var actual = underTest.getAllProductByIds(List.of(10001, 10002));
+        var actual = underTest.getAllProductByIds(List.of(1, 2));
 
         assertThat(actual)
                 .usingRecursiveComparison()
                 .isEqualTo(
                         new ProductDomainModelTestBuilder()
                                 .jpaProduct()
-                                .withId(10001)
+                                .withId(1)
                                 .buildMany(2)
                 );
     }

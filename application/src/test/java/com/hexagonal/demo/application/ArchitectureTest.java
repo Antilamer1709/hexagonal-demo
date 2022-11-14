@@ -4,6 +4,7 @@ import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaConstructor;
 import com.tngtech.archunit.core.domain.JavaField;
 import com.tngtech.archunit.core.domain.JavaType;
+import com.tngtech.archunit.core.importer.ImportOption.DoNotIncludeTests;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchCondition;
@@ -21,15 +22,18 @@ import static com.tngtech.archunit.lang.SimpleConditionEvent.violated;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.constructors;
 import static com.tngtech.archunit.library.Architectures.onionArchitecture;
-import static com.tngtech.archunit.library.GeneralCodingRules.*;
 import static com.tngtech.archunit.library.GeneralCodingRules.NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS;
+import static com.tngtech.archunit.library.GeneralCodingRules.NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.substringAfterLast;
 
 /**
  * Architecture tests are used to make sure that application architecture patterns and principles are followed in appropriate manner
  */
-@AnalyzeClasses(packages = "com.hexagonal.demo")
+@AnalyzeClasses(
+        packages = "com.hexagonal.demo",
+        importOptions = {DoNotIncludeTests.class}
+)
 @SuppressWarnings("unused")
 public class ArchitectureTest {
 
@@ -43,12 +47,6 @@ public class ArchitectureTest {
      */
     @ArchTest
     public static final ArchRule JAVA_UTIL_LOGGING_IS_FORBIDDEN = NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING;
-
-    /**
-     * A rule that checks that none of the given classes uses field injection.
-     */
-    @ArchTest
-    public static final ArchRule FIELD_INJECTION_SHOULD_NOT_BE_USED = NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
 
     /**
      * A rule that checks that none of the given classes access the standard streams System.out and System.err.

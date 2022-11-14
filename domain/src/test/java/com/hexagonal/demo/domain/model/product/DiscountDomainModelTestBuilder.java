@@ -9,8 +9,8 @@ public class DiscountDomainModelTestBuilder {
     }
 
     public DiscountDomainModelTestBuilder defaultDiscount() {
-        discount.setPriceAfterDiscount(75);
-        discount.setDiscountInPercent(25);
+        discount.setPriceAfterDiscount(85);
+        discount.setDiscountInPercent(15);
 
         return this;
     }

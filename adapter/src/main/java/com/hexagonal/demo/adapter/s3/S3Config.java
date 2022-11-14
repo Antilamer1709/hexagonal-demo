@@ -15,7 +15,9 @@ import static java.util.stream.IntStream.range;
 @Configuration
 public class S3Config {
 
-    private static final String TEST_FILE = "test file";
+    private static final String TEST_FIRST_FILE = "test first file";
+    private static final String TEST_SECOND_FILE = "test second file";
+    private static final String TEST_THIRD_FILE = "test third file";
 
     @Bean
     public S3Client getS3Client() {
@@ -25,15 +27,14 @@ public class S3Config {
     public static class S3Client {
 
         public byte[] getObject(String key) {
-            return (TEST_FILE + key).getBytes();
+            return (TEST_FIRST_FILE).getBytes();
         }
 
         public List<byte[]> getObjects(String key) {
             List<byte[]> files = new ArrayList<>();
 
-            range(0, 3).forEach(index -> {
-                files.add((TEST_FILE + key + index).getBytes());
-            });
+            files.add(TEST_SECOND_FILE.getBytes());
+            files.add(TEST_THIRD_FILE.getBytes());
 
             return files;
         }

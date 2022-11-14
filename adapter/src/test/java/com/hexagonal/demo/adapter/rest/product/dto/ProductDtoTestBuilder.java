@@ -5,7 +5,7 @@ import com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder.MAIN_PICTURE;
+import static com.hexagonal.demo.domain.model.product.ProductDomainModelTestBuilder.TEST_FIRST_FILE;
 import static java.util.stream.IntStream.range;
 
 public class ProductDtoTestBuilder {
@@ -25,6 +25,24 @@ public class ProductDtoTestBuilder {
         product.setName(productDomainModel.getName());
         product.setOriginalPrice(productDomainModel.getOriginalPrice());
         product.setMainPicture(productDomainModel.getMainPicture());
+
+        return this;
+    }
+
+    public ProductDtoTestBuilder withId(Integer id) {
+        product.setId(id);
+
+        return this;
+    }
+
+    public ProductDtoTestBuilder withName(String name) {
+        product.setName(name);
+
+        return this;
+    }
+
+    public ProductDtoTestBuilder withOriginalPrice(Integer originalPrice) {
+        product.setOriginalPrice(originalPrice);
 
         return this;
     }
@@ -50,7 +68,7 @@ public class ProductDtoTestBuilder {
             newProduct.setId(index);
             newProduct.setName(product.getName() + index);
             newProduct.setOriginalPrice(product.getOriginalPrice() + index * 10);
-            newProduct.setMainPicture((MAIN_PICTURE + index).getBytes());
+            newProduct.setMainPicture((TEST_FIRST_FILE + index).getBytes());
 
             result.add(newProduct);
         });

@@ -13,7 +13,16 @@ The presentation is available by this [link](https://docs.google.com/presentatio
 2) Build it with maven to generate classes. ```mvn compile``` will do the job. (in Intellij you may need to reload maven project to find generated classes from the ```soap.hexagonal.demo..``` package)
 3) Run the main class ```DemoApplication``` as any other Spring Boot application.
 
+# Tests
+Testcontainers library is used, so make sure that docker is running before launching the JPA tests, or building the app with Maven! In case if docker is not running you will have errors.
+
 # Liquibase diff
 To generate Liquibase diff file the next command from ./adapter/ folder: ```mvn liquibase:diff "-Dliquibase.url=jdbc:postgresql://localhost:5434/hexagonal" "-Dliquibase.driver=org.postgresql.Driver" "-Dliquibase.username=sa" "-Dliquibase.password=password" "-Dhibernate.dialect=org.hibernate.dialect.PostgreSQLDialect"```
 
 Pay attention that it won't work if you run it from the root folder!
+
+# TODO
+1) add spring sleuth
+2) remove build many
+3) add minio as a S3 storage
+4) rename constants in builders

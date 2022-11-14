@@ -13,8 +13,13 @@ import static java.util.stream.IntStream.range;
 
 public class OrderDomainModelTestBuilder {
 
+    public static final int TEST_FIRST_ORDER_ID = 1;
+    public static final int TEST_SECOND_ORDER_ID = 2;
+    public static final int TEST_FIRST_ORDER_AMOUNT = 1;
+    public static final int TEST_SECOND_ORDER_AMOUNT = 2;
     public static final String CREATION_DATE_FIELD = "creationDate";
-    public static final String TEST_CREATION_DATE = "2022-01-01T12:00:00";
+    public static final String TEST_FIRST_ORDER_CREATION_DATE = "2022-01-01T12:00:00";
+    public static final String TEST_SECOND_ORDER_CREATION_DATE = "2022-01-02T12:00:00";
 
     private final OrderDomainModel order;
 
@@ -23,8 +28,8 @@ public class OrderDomainModelTestBuilder {
     }
 
     public OrderDomainModelTestBuilder defaultOrder() {
-        order.setOrderId(1);
-        order.setAmount(1);
+        order.setOrderId(TEST_FIRST_ORDER_ID);
+        order.setAmount(TEST_FIRST_ORDER_AMOUNT);
         order.setProduct(new ProductDomainModelTestBuilder().defaultProduct().build());
 
         return this;

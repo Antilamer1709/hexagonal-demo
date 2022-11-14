@@ -19,7 +19,7 @@ import static org.testcontainers.utility.DockerImageName.parse;
 @Testcontainers
 @AutoConfigurationPackage
 @AutoConfigureTestDatabase(replace = NONE)
-public class AbstractAdapterIntegrationTest {
+public class AbstractJpaAdapterIntegrationTest {
 
     private static final String IMAGE = "postgres:15.0";
     private static final String DATASOURCE_URL_PROPERTY_NAME = "spring.datasource.url";

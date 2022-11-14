@@ -29,6 +29,24 @@ public class OrderDtoTestBuilder {
         return this;
     }
 
+    public OrderDtoTestBuilder withOrderId(Integer orderId) {
+        order.setOrderId(orderId);
+
+        return this;
+    }
+
+    public OrderDtoTestBuilder withAmount(Integer amount) {
+        order.setAmount(amount);
+
+        return this;
+    }
+
+    public OrderDtoTestBuilder withProductId(Integer productId) {
+        order.setProductId(productId);
+
+        return this;
+    }
+
     public OrderDtoTestBuilder withCreationDate(LocalDateTime creationDate) {
         order.setCreationDate(creationDate);
 

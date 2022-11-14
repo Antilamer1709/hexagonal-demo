@@ -112,6 +112,7 @@
                 <version>${rider.database.version}</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.github.database-rider</groupId>
                 <artifactId>rider-spring</artifactId>

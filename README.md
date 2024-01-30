@@ -1,5 +1,8 @@
+# Recording
+[![Recording](https://img.youtube.com/vi/abcdefghijk/0.jpg)](https://youtu.be/wYWh5rg88UE?si=oKweZPoB4xFwl3F5)
+
 # Hexagonal demo
-Demo of the hexagonal architecture in the spring application. 
+Demo of the hexagonal architecture in the spring application.
 
 The project simulates an online store. For the sake of simplicity, I mocked some data and provide only a few endpoints. Take a look at http://localhost:8080/swagger-ui.html to see all of them with a description.
 

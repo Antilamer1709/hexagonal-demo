@@ -1,5 +1,5 @@
 # Recording
-[ [Recording on YouTube](https://youtu.be/wYWh5rg88UE?si=oKweZPoB4xFwl3F5){:target="_blank"} ]
+[Recording on YouTube](https://youtu.be/wYWh5rg88UE?si=oKweZPoB4xFwl3F5)
 
 # Hexagonal demo
 Demo of the hexagonal architecture in the spring application.
